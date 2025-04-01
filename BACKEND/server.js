@@ -24,6 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+    res.send("Backend is running!");
+});
+
 //api
 app.use('/api/v1/user',userRoute);
 app.use('/api/v1/company',companyRoute);
