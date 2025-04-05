@@ -22,10 +22,7 @@ const PORT=process.env.PORT || 5001;
 
 
 app.use(cors({
-<<<<<<< HEAD
-    // origin: "http://localhost:5173", // Allow requests from your frontend
-=======
->>>>>>> 10b9484 (Updated frontend & backend with latest changes)
+
     origin: ["https://job-portal-three-mauve.vercel.app"],
     credentials: true, // Allow cookies if you're using authentication
 }));
@@ -66,7 +63,4 @@ mongoose.connect(process.env.MONGO_URI,{
 app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`);
 })
-<<<<<<< HEAD
-=======
 
->>>>>>> 10b9484 (Updated frontend & backend with latest changes)
