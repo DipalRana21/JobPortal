@@ -1,7 +1,11 @@
 import react from "react";
 import './style.css';
+import { useNavigate } from "react-router-dom";
 
 const Job = () => {
+
+    const navigate= useNavigate();
+    const jobId= "hsdkjiy34j32"
     return (
         <div>
             <div className="job-container ">
@@ -33,7 +37,7 @@ const Job = () => {
                 </div>
 
                 <div className="jobdetails-btn">
-                    <button>Details</button>
+                    <button onClick={()=> navigate(`/description/${jobId}`)}>Details</button>
                     <button style={{background:"purple"}}>Save For Later</button>
                 </div>
             </div>

@@ -467,9 +467,12 @@
 
 .resume {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  /* flex-direction: column; */
+  align-items: center;
+  gap: 10px;
   max-width: 100%;
+  flex-wrap: wrap;
+  
 }
 
 .skills-container {
@@ -525,13 +528,131 @@
   cursor: pointer;
 }
 
+
+
+.apply-btn {
+  border-radius: 8px;
+  background-color: #7209b7;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apply-btn:hover {
+  background-color: #5f32ad;
+}
+
+.apply-btn:disabled {
+  background-color: #606060;
+  cursor: not-allowed;
+}
+
 .status-btn:hover {
-  background: #333; /* Slightly lighter on hover */
+  background: #333; 
 }
 
 
+/* Jobdescription */
+
+.jobdestit{
+  font-weight: bold;
+  font-size: 1.25rem; /* Equivalent to 20px */
+  line-height: 1.75rem; /* Equivalent to 28px */
+  display: flex;
+}
+
+.jobdesbase{
+  margin-left: 70px;
+}
+
+.role-heading {
+  font-weight: bold; /* Equivalent to font-bold */
+  margin-top: 4px;   /* Equivalent to my-1 (margin-y) */
+  margin-bottom: 4px;
+}
+
+.role-text {
+  padding-left: 16px; /* Equivalent to pl-4 */
+  font-weight: normal; /* Equivalent to font-normal */
+  color: #1f2937; /* Equivalent to text-gray-800 */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto; /* Allow scrolling inside modal */
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.modal-title{
+margin-bottom: 11px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
+}
 
 
+.form-group label {
+  flex: 0.3;  /* Adjusts label width */
+  text-align: right;
+  padding-right: 10px;
+}
+
+
+.form-group input {
+  flex: 1.8; /* Adjusts input width */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-footer {
+  margin-top: 15px;
+}
+
+
+ 
+
+.close-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  border-radius: 9px;
+}
+
+.close-btn:hover {
+  background-color: darkred;
+}
 
 /* Home page */
 .text {

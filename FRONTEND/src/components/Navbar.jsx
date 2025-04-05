@@ -1,11 +1,34 @@
 import React ,{ useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './style.css'; // Ensure the CSS file is imported
 import logo3 from './img/logo3.jpg'; 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { USER_API_END_POINT } from './utils/constant';
+import { setUser } from '@/redux/authSlice';
 
 const Navbar = () => {
   const {user} = useSelector(store=>store.auth);
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+
+  
+  const logoutHandler= async()=>{
+    try {
+      const res= await axios.get(`${USER_API_END_POINT}/logout`,{withCredentials:true});
+      if(res.data.success)
+      {
+        dispatch(setUser(null));
+        navigate("/");
+        toast.success(res.data.message);
+
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  }
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -32,16 +55,16 @@ const Navbar = () => {
           :(
             <div className="avatar-container">
           <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
-            <img src={logo3} alt="Avatar" className="avatar-img" />
+            <img src={user?.profile?.profilePhoto || "https://via.placeholder.com/150"} alt="Avatar" className="avatar-img" />
           </button>
 
           {isOpen && (
             <div className="popup-menu">
               <div className="popup-header">
-                <img src={logo3} alt="User" className="popup-avatar" style={{cursor:"pointer"}} />
+                <img src={user?.profile?.profilePhoto || "https://via.placeholder.com/150"} alt="User" className="popup-avatar" style={{cursor:"pointer"}} />
                 <div className="popup-user-details">
-                  <h4>{user.fullname}</h4>
-                  <p className="popup-bio" style={{marginTop:"5px"}}>Hello i am Dipal</p>
+                  <h4>{user?.fullname}</h4>
+                  <p className="popup-bio" style={{marginTop:"5px"}}>{user?.profile?.bio}</p>
                 
                 </div>
 
@@ -49,7 +72,7 @@ const Navbar = () => {
               <div className="Avatar-btn" style={{display:"flex",flexDirection:"column", gap:"5px"}}>
               <button><i className="fas fa-user"></i><Link to="/Profile" >View Profile</Link> </button>
               
-              <button><i className="fas fa-sign-out-alt"></i> Logout</button>
+              <button onClick={logoutHandler}><i className="fas fa-sign-out-alt"></i> Logout</button>
               </div>
               
 

@@ -1,13 +1,18 @@
-import react from "react";
+import react, { useState } from "react";
 import './style.css';
 import logo3 from './img/logo3.jpg';
 import AppliedJobTable from "./AppliedJobTable";
+import UpdateProfileDialogue from "./UpdateProfileDialogue";
+import { useSelector } from "react-redux";
 
-
-const skills = ["Html", "Css", "Javascript", "Reactjs"]
+// const skills = ["Html", "Css", "Javascript", "Reactjs"]
+const isResume = true
 const Profile = () => {
 
-    const isResume = true
+    const [open,setOpen]=useState(false)
+
+    const {user}=useSelector(store=>store.auth);
+    
     return (
         <div>
             <div className="Profilediv main-content">
@@ -15,11 +20,11 @@ const Profile = () => {
                   
 
                 <div style={{display:"flex", flexDirection:"row",alignItems:"center", gap:"21px"}}>
-                <img src={logo3} alt="User" className="popup-avatar" />
+                <img src={user?.profile?.profilePhoto || "https://via.placeholder.com/150"}alt="User" className="popup-avatar" />
                 <div className="profiledes">
                 
-                    <h4>Full Name</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat libero tempore vel esse distinctio soluta.</p>
+                    <h4>{user?.fullname}</h4>
+                    <p>{user?.profile?.bio}</p>
                     </div>
                 </div>
                     
@@ -28,18 +33,18 @@ const Profile = () => {
                     <div className="contact-wrapper">
                         <div className="contact-item">
                             <i className="fas fa-envelope" style={{fontSize: "21px"}}></i>
-                            <span style={{fontSize: "15px"}}>dipal@gmail.com</span>
+                            <span style={{fontSize: "15px"}}>{user?.email}</span>
                         </div>
                         <div className="contact-item">
                             <i className="fas fa-phone" style={{fontSize: "21px"}}></i>
-                            <span style={{fontSize: "15px"}}>2314546638</span>
+                            <span style={{fontSize: "15px"}}>{user?.phoneNumber}</span>
                         </div>
                     </div>
 
                     <div>
                         <h4 className="profile-left" style={{ marginTop: "14px" }}>Skills</h4>
                         {
-                            skills.length !== 0 ? skills.map((item, index) => <button style={{
+                            user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((item, index) => <button style={{
                                 background: "black",
                                 borderRadius: "5px",
                                 color: "white",
@@ -49,11 +54,11 @@ const Profile = () => {
                         }
                     </div>
 
-                    <div className="resume">
-                        <h4 style={{ fontSize: "bold", marginTop: "5px" }}>Resume</h4>
+                    <div className="resume" >
+                        <h4 style={{ fontSize: "bold", marginTop: "5px" , position:"relative"}}>Resume</h4>
                         <div className="skills-container">
                         {
-                            isResume ? (<a target="_blank" href="https://www.bmw.com/en/index.html" className="resume-link">  BMW</a>)
+                            isResume ? (<a target="_blank" href={user?.profile?.resume} className="resume-link">{user?.profile?.resumeOriginalName} </a>)
                                 : (<span className="resume-na">NA</span>)
                         }
                         </div>
@@ -66,7 +71,7 @@ const Profile = () => {
                 
                
 
-                <button className="edit-button">
+                <button onClick={()=>setOpen(true)} className="edit-button">
                     <i className="fas fa-pen"></i>
                 </button>
 
@@ -81,6 +86,8 @@ const Profile = () => {
                 <AppliedJobTable />
 
             </div>
+
+            <UpdateProfileDialogue open={open} setOpen={setOpen} />
 
         </div>
     )

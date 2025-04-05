@@ -17,6 +17,7 @@ import Browse from './components/Browse';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Profile from './components/Profile';
+import JobDescription from './components/JobDescription';
 
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/description/:id" element={<JobDescription/>} />
        
         </Routes>
     <Footer/>
