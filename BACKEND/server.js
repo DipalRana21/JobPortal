@@ -46,7 +46,7 @@ app.use('/api/v1/company',companyRoute);
 app.use('/api/v1/job',jobRoute);
 app.use('/api/v1/application',applicationRoute);
 
-// app.use(cors({credentials: true, origin: "http://localhost:5173"}))
+
 
 mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
