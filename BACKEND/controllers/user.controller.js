@@ -166,8 +166,6 @@ export const updateProfile = async (req, res) => {
         
 
         const userId = req.id; //Middleware authentication
-        console.log("User ID from middleware:", req.id);
-
 
         let user = await User.findById(userId);
 
