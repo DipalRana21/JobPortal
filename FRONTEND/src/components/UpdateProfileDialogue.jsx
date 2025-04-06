@@ -78,7 +78,7 @@ Spread operator (...prev) keeps existing input values and updates only the chang
                     headers:{
                         'Content-Type':'multipart/form-data'
                     },
-                    withCredentials:true
+                    withCredentials: true
                 }
             );
             if(res.data.success)
