@@ -15,10 +15,7 @@ dotenv.config();
 const app=express();
 const PORT=process.env.PORT || 5001;
 
-// app.use(cors({
-//     origin: "http://localhost:5173", // Allow requests from your frontend
-//     credentials: true, // Allow cookies if you're using authentication
-// }));
+
 
 
 app.use(cors({
@@ -26,14 +23,15 @@ app.use(cors({
     origin: ["https://job-portal-three-mauve.vercel.app"],
     credentials: true, // Allow cookies if you're using authentication
 }));
+app.options("*", cors());
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://job-portal-three-mauve.vercel.app");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "https://job-portal-three-mauve.vercel.app");
+//     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//     res.header("Access-Control-Allow-Credentials", "true");
+//     next();
+// });
 
 
 app.use(express.json());
@@ -50,7 +48,7 @@ app.use('/api/v1/company',companyRoute);
 app.use('/api/v1/job',jobRoute);
 app.use('/api/v1/application',applicationRoute);
 
-app.use(cors({credentials: true, origin: "http://localhost:5173"}))
+// app.use(cors({credentials: true, origin: "http://localhost:5173"}))
 
 mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
