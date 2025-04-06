@@ -16,14 +16,12 @@ const app=express();
 const PORT=process.env.PORT || 5001;
 
 
-
-
 app.use(cors({
 
     origin: ["https://job-portal-three-mauve.vercel.app"],
     credentials: true, // Allow cookies if you're using authentication
 }));
-app.options("*", cors());
+
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "https://job-portal-three-mauve.vercel.app");
