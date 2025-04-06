@@ -18,8 +18,8 @@ const PORT=process.env.PORT || 5001;
 
 app.use(cors({
 
-    origin: ["https://job-portal-three-mauve.vercel.app"],
-    credentials: true, // Allow cookies if you're using authentication
+    origin: "https://job-portal-three-mauve.vercel.app",
+    credentials: true
 }));
 
 
