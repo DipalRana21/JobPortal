@@ -2,9 +2,11 @@
 import React from "react";
 import Navbar from "./Navbar";
 import './style.css';
+import useGetAllJobs from '@/hooks/useGetAllJobs'
 
 
 const Home = () => {
+  useGetAllJobs();
   return (
     <>
       <header className="header home-img">
