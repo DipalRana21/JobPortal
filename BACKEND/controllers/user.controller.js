@@ -155,8 +155,13 @@ export const updateProfile = async (req, res) => {
         // console.log(fullname, email, phoneNumber, bio, skills)
         const file = req.file;
         // Cloudinary
-        const fileUri=getDataUri(file)
-        const cloudResponse= await cloudinary.uploader.upload(fileUri.content);
+            let cloudResponse = null;
+
+        // Handle file only if it's uploaded
+        if (file) {
+            const fileUri = getDataUri(file);
+            cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+        }
 
 
         let skillsArray;
