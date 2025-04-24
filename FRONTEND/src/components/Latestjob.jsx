@@ -2,11 +2,8 @@ import react from "react";
 import Jobcards from "./jobcards";
 import './style.css';
 
-import { useSelector } from 'react-redux'; 
 
-//const randomjobs=[1,2,3,4,5,6,7,8];
 
-const {allJobs} = useSelector(store=>store.job);
 
 import { useSelector } from "react-redux";
 import store from "@/redux/store";
