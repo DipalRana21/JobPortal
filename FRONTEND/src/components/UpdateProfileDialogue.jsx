@@ -66,8 +66,13 @@ Spread operator (...prev) keeps existing input values and updates only the chang
         formData.append("phoneNumber",input.phoneNumber);
         formData.append("bio",input.bio);
         input.skills.forEach((skill, index) => {
+
          formData.append(`skills[${index}]`, skill);
-           });
+
+            formData.append(`skills[${index}]`, skill);
+              });
+        
+
         if(input.file)
         {
             formData.append("file",input.file);

@@ -23,4 +23,7 @@ export const {
     setSingleJob, 
     
 } = jobSlice.actions;
+
 export default jobSlice.reducer;
+
+

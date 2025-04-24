@@ -22,9 +22,11 @@ app.use(cors({
     credentials: true
 }));
 
-
-
-
+// app.use(cors({
+//     origin:"https://localhost:5173",
+//     credentials: true, // Allow cookies if you're using authentication
+// }))
+    
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
