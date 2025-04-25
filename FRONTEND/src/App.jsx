@@ -18,6 +18,10 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Profile from './components/Profile';
 import JobDescription from './components/JobDescription';
+import Companies from './components/admin/Companies';
+import CompanyCreate from './components/admin/CompanyCreate';
+import CompanySetup from './components/admin/CompanySetup';
+import MockInterview from './components/MockInterview';
 
 
 export default function App() {
@@ -34,15 +38,25 @@ export default function App() {
           </>
           } />
 
+          <Route path="/mockint" element={ <MockInterview/> } />
           <Route path="/jobs" element={ <Jobs/> } />
           <Route path="/browse" element={<Browse/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/profile" element={<Profile/>} />
           <Route path="/description/:id" element={<JobDescription/>} />
+
+          <Route path="/admin/companies" element= {<Companies/>} />
+          <Route path="/admin/companies/create" element= {<CompanyCreate/>} />
+          <Route path="/admin/companies/:id" element= {<CompanySetup/>} />
        
         </Routes>
+
+        
     <Footer/>
+   
+
+   
    
     </Router>
     

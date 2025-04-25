@@ -3,9 +3,8 @@ import Jobcards from "./jobcards";
 import './style.css';
 
 
-
-
 import { useSelector } from "react-redux";
+
 import store from "@/redux/store";
 
 

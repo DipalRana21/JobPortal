@@ -35,12 +35,31 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <Link to="/">MyWebsite</Link>
+          <Link style={{textDecorationLine:"none"}} to="/">Job Connect</Link>
         </div>
         <div className="navbar-links">
-          <Link to="/" className="navbar-link">Home</Link>
+
+          {
+            user && user.role === 'recruiter' ? (
+              <>
+              <Link to="/admin/companies" className="navbar-link">Companies</Link>
+              <Link to="/admin/jobs" className="navbar-link">Jobs</Link>
+              </>
+            ) : (
+              <>
+               <Link to="/" className="navbar-link">Home</Link>
           <Link to="/jobs" className="navbar-link">Jobs</Link>
           <Link to="/browse" className="navbar-link">Browse</Link>
+          {user && (
+        <Link to="/mockint" className="navbar-link mock-link">
+          Mock Interview
+        </Link>
+      )}
+              </>
+            )
+          }
+
+         
         </div>
 
         {
@@ -70,7 +89,13 @@ const Navbar = () => {
 
               </div>
               <div className="Avatar-btn" style={{display:"flex",flexDirection:"column", gap:"5px"}}>
-              <button><i className="fas fa-user"></i><Link to="/Profile" >View Profile</Link> </button>
+
+                {
+                  user && user.role=== 'student' && (
+                    <button><i className="fas fa-user"></i><Link to="/Profile" >View Profile</Link> </button>
+                  )
+                }
+             
               
               <button onClick={logoutHandler}><i className="fas fa-sign-out-alt"></i> Logout</button>
               </div>
