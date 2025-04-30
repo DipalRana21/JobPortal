@@ -163,9 +163,9 @@ export const updateProfile = async (req, res) => {
             
             // cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
-            const extension = path.extname(file.originalname).toLowerCase(); // e.g., .pdf
-  const filename = path.basename(file.originalname, extension).replace(/\s+/g, "_"); // Remove spaces
-  const publicId = `resumes/${filename}`; // Add folder path
+ const extension = path.extname(file.originalname).toLowerCase(); // .pdf
+  const filename = path.basename(file.originalname, extension).replace(/\s+/g, "_"); // no spaces
+  const publicId = `resumes/${filename}`;
 
   cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
     resource_type: "raw",
@@ -209,7 +209,7 @@ if (skills) {
             // user.profile.resume=cloudResponse.secure_url //save the cloudinary url
             // user.profile.resumeOriginalName= file.originalname // save the og file name
 
-              const inlineUrl = `https://res.cloudinary.com/${process.env.CLOUD_NAME}/raw/upload/fl_attachment:false/${publicId}${extension}`;
+           const inlineUrl = `https://res.cloudinary.com/${process.env.CLOUD_NAME}/raw/upload/fl_attachment:false/${publicId}${extension}`;
 
     user.profile.resume = inlineUrl;
     user.profile.resumeOriginalName = file.originalname;
