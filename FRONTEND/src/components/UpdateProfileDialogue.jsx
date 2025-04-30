@@ -65,12 +65,20 @@ Spread operator (...prev) keeps existing input values and updates only the chang
         formData.append("email",input.email);
         formData.append("phoneNumber",input.phoneNumber);
         formData.append("bio",input.bio);
-        input.skills.forEach((skill, index) => {
+      if (Array.isArray(input.skills)) {
+    input.skills.forEach((skill, index) => {
+        formData.append(`skills[${index}]`, skill);
+    });
+} else if (typeof input.skills === 'string') {
+    // If it's a comma-separated string like "HTML, CSS, JS"
+    const skillsArray = input.skills.split(',').map(s => s.trim());
+    skillsArray.forEach((skill, index) => {
+        formData.append(`skills[${index}]`, skill);
+    });
+} else {
+    console.warn("Skills input is not in a valid format:", input.skills);
+}
 
-         formData.append(`skills[${index}]`, skill);
-
-            formData.append(`skills[${index}]`, skill);
-              });
         
 
         if(input.file)
