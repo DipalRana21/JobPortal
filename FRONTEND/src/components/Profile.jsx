@@ -61,7 +61,7 @@ const Profile = () => {
                         <h4 style={{ fontSize: "bold", marginTop: "5px" , position:"relative"}}>Resume</h4>
                         <div className="skills-container">
                         {
-                            isResume ? (<a target="_blank" href={user?.profile?.resume} className="resume-link">{user?.profile?.resumeOriginalName} </a>)
+                            isResume ? (<a target="_blank" href={user?.profile?.resume} download className="resume-link">{user?.profile?.resumeOriginalName} </a>)
                                 : (<span className="resume-na">NA</span>)
                         }
                         </div>
