@@ -1,4 +1,4 @@
-import react,{useState} from "react";
+import react,{useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import '../style.css';
 import { USER_API_END_POINT } from "../utils/constant";
@@ -15,7 +15,7 @@ const Signup=()=>{
 
     const navigate= useNavigate();
     // const loading= useSelector(store=>store.auth);
-    const loading = useSelector(store => store.auth.loading);
+    const {loading,user} = useSelector(store => store.auth);
 
     const dispatch= useDispatch();
 
@@ -92,6 +92,12 @@ const Signup=()=>{
         profile:null,
     });
 
+
+     useEffect(()=>{
+            if(user){
+                navigate("/");
+            }
+        },[])
 
 
     

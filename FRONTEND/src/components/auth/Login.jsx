@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { USER_API_END_POINT } from "../utils/constant";
@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login=()=>{
 
-    const {loading} = useSelector(store=>store.auth);
+    const {loading,user} = useSelector(store=>store.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [input, setInput] = useState({
@@ -60,6 +60,11 @@ const Login=()=>{
         }
     }
 
+    useEffect(()=>{
+        if(user){
+            navigate("/");
+        }
+    },[])
     return(
         <div className="main-content signup">
             <div className="signup-content">

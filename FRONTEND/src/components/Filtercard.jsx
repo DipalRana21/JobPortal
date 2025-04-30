@@ -1,6 +1,8 @@
 
-import react,{ useState }  from "react";
+import react,{ useEffect, useState }  from "react";
 import './style.css';
+import { useDispatch } from "react-redux";
+import { setSearchedQuery } from "@/redux/jobSlice";
 
 
 const filterData=[
@@ -23,12 +25,21 @@ const filterData=[
 const FilterCard= ()=>{
 
     const [selectedValue, setSelectedValue] = useState("");
+    const dispatch=useDispatch();
+    const changeHandler = (value) => {
+        setSelectedValue(value);
+    }
+
+    useEffect(()=>{
+        dispatch(setSearchedQuery(selectedValue));
+    },[selectedValue]);
+
     return(
 
         <div className="filtercard-container">
             <h4>Filter jobs</h4>
             <hr />
-        <div className="filter-content">
+        <div className="filter-content" value={selectedValue} >
             {
 
                 /*
@@ -49,7 +60,7 @@ const FilterCard= ()=>{
                                 const itemId=`id${index}-${idx}`;  //This creates an unique id for each item in radiobtn
                                 return (
                                 <div key={itemId} className="filter-option">
-                                    <input type="radio" name={data.filterType} value={item} id={itemId}  />
+                                    <input onChange={(e) => changeHandler(e.target.value)} type="radio" name={data.filterType} value={item} id={itemId}  />
                                     <label htmlFor={itemId}>{item}</label>
                                 </div>
                                 )

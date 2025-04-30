@@ -22,6 +22,11 @@ import Companies from './components/admin/Companies';
 import CompanyCreate from './components/admin/CompanyCreate';
 import CompanySetup from './components/admin/CompanySetup';
 import MockInterview from './components/MockInterview';
+import AdminJobs from './components/admin/AdminJobs';
+import PostJob from './components/admin/PostJob';
+import Applicants from './components/admin/Applicants';
+import ProtectedRoute from './components/admin/ProtectedRoute';
+
 
 
 export default function App() {
@@ -46,9 +51,13 @@ export default function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/description/:id" element={<JobDescription/>} />
 
-          <Route path="/admin/companies" element= {<Companies/>} />
-          <Route path="/admin/companies/create" element= {<CompanyCreate/>} />
-          <Route path="/admin/companies/:id" element= {<CompanySetup/>} />
+          <Route path="/admin/companies" element= {<ProtectedRoute><Companies/></ProtectedRoute>} />
+          <Route path="/admin/companies/create" element= {<ProtectedRoute><CompanyCreate/></ProtectedRoute>} />
+          <Route path="/admin/companies/:id" element= {<ProtectedRoute><CompanySetup/></ProtectedRoute>} />
+          <Route path="/admin/jobs" element= {<ProtectedRoute><AdminJobs/></ProtectedRoute>} />
+          <Route path="/admin/jobs/create" element= {<ProtectedRoute><PostJob/></ProtectedRoute>} />
+          <Route path="/admin/jobs/:id/applicants" element= {<ProtectedRoute><Applicants/></ProtectedRoute>} />
+       
        
         </Routes>
 

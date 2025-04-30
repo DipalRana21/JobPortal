@@ -37,7 +37,7 @@ const Job = ({job}) => {
                
 
                 <div className="logo">
-                    <button className="img-btn"><img src="https://www.pngplay.com/wp-content/uploads/13/Google-Logo-PNG-Photo-Image.png" className="logo-img" /></button>
+                    <button className="img-btn"><img src={job?.company?.logo}  /></button>
                     
                     <div className="comp-detail">
                         <h3>{job?.company?.name}</h3>

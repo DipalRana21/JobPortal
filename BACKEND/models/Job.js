@@ -51,6 +51,6 @@ const jobSchema= new mongoose.Schema({
         ref:'Application'
     }]
 
-});
+},{ timestamps: true } );
 
 export default mongoose.model("Job",jobSchema);

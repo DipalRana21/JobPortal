@@ -1,11 +1,13 @@
 import react from 'react';
 import './style.css';
 import {Badge } from './ui/badge';
+import { useNavigate } from 'react-router-dom';
 
 const jobcards = ({job}) => {
+    const navigate=useNavigate();
 return(
 
-    <div className='jobcards-container'>
+    <div onClick={()=>navigate(`/description/${job._id}`)} className='jobcards-container'>
         <div>
         <span  className='jobcards cname' >{job?.company?.name}</span>
         <p  className='jobcards conname'>India</p>

@@ -91,7 +91,12 @@ const JobDescription = () => {
                 <h4 className="role-heading">
                     Total Applications: <span className="role-text">{singleJob?.applications?.length}</span>
                 </h4>
- 
+                {singleJob?.createdAt && (
+  <h4 className="role-heading">
+    Posted Date: <span className="role-text">{singleJob?.createdAt.split('T')[0]}</span>
+  </h4>
+)}
+
 
 
             </div>
