@@ -164,7 +164,9 @@ export const updateProfile = async (req, res) => {
             // cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
             cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
-  resource_type: "raw",
+ resource_type: "raw",
+  public_id: `resumes/${Date.now()}`, 
+  format: "pdf",
 });
 
         }
