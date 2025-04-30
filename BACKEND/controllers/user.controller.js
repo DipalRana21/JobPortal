@@ -160,7 +160,12 @@ export const updateProfile = async (req, res) => {
         // Handle file only if it's uploaded
         if (file) {
             const fileUri = getDataUri(file);
-            cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+            cloudResponse = await cloudinary.uploader.upload(fileUri.content,{
+
+                 resource_type: "raw",
+  folder: "resumes", // optional, but keeps files organized
+  type: "upload" // make it publicly accessible
+            });
         }
 
 
