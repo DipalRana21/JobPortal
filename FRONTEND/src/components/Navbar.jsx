@@ -35,7 +35,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <Link style={{textDecorationLine:"none"}} to="/">Job Connect</Link>
+          <Link style={{textDecorationLine:"none", color:"white"}} to="/">Job Connect</Link>
         </div>
         <div className="navbar-links">
 
