@@ -7,7 +7,7 @@
 }
 
 .navbar {
-  background-color: rgb(135, 227, 246);
+  background-color: rgb(96, 34, 221);
   color: red;
   padding: 1rem;
   position: fixed;
@@ -38,7 +38,7 @@
 }
 
 .navbar-link {
-  color: green;
+  color: white;
   text-decoration: none;
   transition: color 0.3s;
   display: flex;
