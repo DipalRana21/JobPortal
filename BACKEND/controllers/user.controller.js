@@ -8,54 +8,70 @@ export const register = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, password, role } = req.body;
 
-        // console.log(fullname, email, phoneNumber, password, role );
-
         if (!fullname || !email || !phoneNumber || !password || !role) {
             return res.status(400).json({
                 message: "Something is missing",
                 success: false
             });
         }
-      
-    
-        const file=req.file;
-        const fileUri=getDataUri(file);
-        const cloudResponse=await cloudinary.uploader.upload(fileUri.content);
+
+        // Phone number validation: exactly 10 digits
+        if (!/^\d{10}$/.test(phoneNumber)) {
+            return res.status(400).json({
+                message: "Phone number must be exactly 10 digits",
+                success: false
+            });
+        }
+
+        // Password validation
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            return res.status(400).json({
+                message: "Password must be at least 6 characters long and include 1 lowercase, 1 uppercase, and 1 special character",
+                success: false
+            });
+        }
+
+        const file = req.file;
+        const fileUri = getDataUri(file);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
         const user = await User.findOne({ email });
 
         if (user) {
             return res.status(400).json({
-                message: 'User already exist ',
+                message: 'User already exists',
                 success: false
-            })
+            });
         }
 
         const hashedPassword = await bcrypt.hash(password, 11);
-     
+
         await User.create({
             fullname,
             email,
             phoneNumber,
             password: hashedPassword,
             role,
-            profile:{
+            profile: {
                 profilePhoto: cloudResponse.secure_url,
             }
         });
 
-        console.log(User);
         return res.status(201).json({
             message: 'Account created successfully.',
             success: true
-
-        })
-
+        });
 
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: 'Internal Server Error',
+            success: false
+        });
     }
-}
+};
+
 
 export const login = async (req, res) => {
     try {
