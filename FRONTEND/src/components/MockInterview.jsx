@@ -56,7 +56,7 @@ const MockInterview = () => {
 
   const generateResponse = async (prompt) => {
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAGeCLSPyS8TE0eMIIzSpygJ9Yt-eUkaII`,
+      ,
       {
         method: "POST",
         headers: {
